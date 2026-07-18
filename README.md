@@ -1,8 +1,8 @@
-# IIIV — Multisensor Failure-Mode Detection for Gravity-Based Infusion Setups
+# IIIV: Multisensor Failure-Mode Detection for Gravity-Based Infusion Setups
 
-> A $20 clip-on monitor that classifies IV failure modes in real time — built in 36 hours at MedTech Hackathon 2026.
+> A $20 clip-on monitor that classifies IV failure modes in real time; built in 36 hours at MedTech Hackathon 2026.
 
-**IIIV** is a low-cost, multi-sensor attachment for gravity-based IV systems that detects and classifies three failure modes — **normal flow, occlusion, and leak/disconnection** — through sensor fusion, then streams alerts to a centralized React dashboard for ward-wide monitoring. Designed for understaffed and low-resource clinical environments where existing smart-IV systems are cost-prohibitive.
+**IIIV** is a low-cost, multi-sensor attachment for gravity-based IV systems that detects and classifies three failure modes: **normal flow, occlusion, and leak/disconnection**: through sensor fusion, then streams alerts to a centralized React dashboard for ward-wide monitoring. Designed for understaffed and low-resource clinical environments where existing smart-IV systems are cost-prohibitive.
 
 > The name **IIIV** is a play on "IV," with three I's for the three states the system detects.
 
@@ -19,10 +19,10 @@
 
 - **$20 prototype** vs. $400–$500+ for commercial competitors (DripAssist, Monidrop) — ~95% cost reduction
 - **Three-state classification** through sensor fusion, addressing the monitoring gap that single-sensor drip monitors can't close
-- **Clip-on form factor** — works with any standard gravity IV bag, no tubing modifications required
-- **Real-time ward dashboard** — single nurse can monitor every IV bag on a floor from one screen
-- **Offline-capable firmware** — runs directly on microcontroller, no internet dependency for the edge device
-- **End-to-end stack** — Arduino/C++ firmware and React frontend, both in this repo
+- **Clip-on form factor** works with any standard gravity IV bag, no tubing modifications required
+- **Real-time ward dashboard** single nurse can monitor every IV bag on a floor from one screen
+- **Offline-capable firmware** runs directly on microcontroller, no internet dependency for the edge device
+- **End-to-end stack** Arduino/C++ firmware and React frontend, both in this repo
 
 ## Clinical Context
 
@@ -31,7 +31,7 @@ The deck cites two statistics that frame the problem:
 - **36% of IV catheter transfusions fail before therapy completion** (Marsh et al., 2024)
 - **72–99% of clinical alarms are false alarms**, driving alarm fatigue (Sendelbach & Funk, 2013)
 
-These numbers describe the same root failure: gravity IV systems have a monitoring gap. Existing devices like Monidrop detect drop rate only, fire threshold-based alarms, and provide no failure classification or sensor redundancy. A nurse hearing an alarm doesn't know whether the bag is empty, occluded, or leaking — so alarms get ignored, and real complications get missed. IIIV closes that gap by classifying the failure mode itself, so alerts are actionable instead of ambient.
+These numbers describe the same root failure: gravity IV systems have a monitoring gap. Existing devices like Monidrop detect drop rate only, fire threshold-based alarms, and provide no failure classification or sensor redundancy. A nurse hearing an alarm doesn't know whether the bag is empty, occluded, or leaking, so alarms get ignored, and real complications get missed. IIIV closes that gap by classifying the failure mode itself, so alerts are actionable instead of ambient.
 
 ## Technical Approach
 
@@ -79,8 +79,8 @@ Classified state changes stream to a React dashboard that aggregates patient tel
 | Hardware | Arduino Uno R3, 16x2 LCD, 10kΩ potentiometer, 10kΩ & 220Ω resistors, breadboard, LEDs, jumper wires, USB-B cable|
 
 **Firmware notes:**
-- `iiiv_classifier.ino` is the production-intent build — analyzes drip rate against fluid level for use with medical-grade IV bags.
-- `iiiv_classifier_demo.ino` is the hackathon prototype — reads water presence as a boolean to accommodate our team's handmade IV bag. Less accurate in a clinical context, but the right call given the sprint constraint.
+- `iiiv_classifier.ino` is the production-intent build: analyzes drip rate against fluid level for use with medical-grade IV bags.
+- `iiiv_classifier_demo.ino` is the hackathon prototype: reads water presence as a boolean to accommodate our team's handmade IV bag. Less accurate in a clinical context, but the right call given the sprint constraint.
 
 ## Setup
 
@@ -91,12 +91,12 @@ Classified state changes stream to a React dashboard that aggregates patient tel
 
 ## Future Work
 
-- **Movement ML model** — distinguish patient-movement artifacts from true failure signals (gravity IV pumps are sensitive to motion, which is a known false-alarm driver)
-- **Predictive failure detection** — anticipate occlusion onset from upstream drip-rate trends rather than detecting after the fact
-- **Sensor improvements** — higher-quality and longer-range water-level sensor; photoresistor calibration for varied ambient lighting
-- **Enclosure design** — assembly and casing for clinical-environment durability
+- **Movement ML model**: distinguish patient-movement artifacts from true failure signals (gravity IV pumps are sensitive to motion, which is a known false-alarm driver)
+- **Predictive failure detection**: anticipate occlusion onset from upstream drip-rate trends rather than detecting after the fact
+- **Sensor improvements**: higher-quality and longer-range water-level sensor; photoresistor calibration for varied ambient lighting
+- **Enclosure design**: assembly and casing for clinical-environment durability
 
-## Team Phlegm — MedTech Hackathon 2026
+## Team Phlegm | MedTech Hackathon 2026
 
 - William Nguyen
 - Ruy Okaji
