@@ -4,7 +4,7 @@
 
 **IIIV** is a low-cost, multi-sensor attachment for gravity-based IV systems that detects and classifies three failure modes: **normal flow, occlusion, and leak/disconnection**: through sensor fusion, then streams alerts to a centralized React dashboard for ward-wide monitoring. Designed for understaffed and low-resource clinical environments where existing smart-IV systems are cost-prohibitive.
 
-> The name **IIIV** is a play on "IV," with three I's for the three states the system detects.
+> Fun Fact: The 3 I's in IIIV stands for the 3 states it detects!
 
 📊 **[Pitch Deck](iiiv_pitchdeck.pdf)** · 🎥 **[Demo Video](iiiv_demo_cropped.mp4)** · 🧰 **[Wiring Diagram](iiiv_wiring.png)** 
 
