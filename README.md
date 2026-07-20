@@ -6,7 +6,7 @@
 
 > Fun Fact: The 3 I's in IIIV stands for the 3 states it detects!
 
-📊 **[Pitch Deck](iiiv_pitchdeck.pdf)** · 🎥 **[Demo Video](iiiv_demo_cropped.mp4)** · 🧰 **[Wiring Diagram](iiiv_wiring.png)** 
+**[Pitch Deck](iiiv_pitchdeck.pdf)** · **[Demo Video](iiiv_demo_cropped.mp4)** · **[Wiring Diagram](iiiv_wiring.png)** 
 
 ---
 
