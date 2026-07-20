@@ -1,12 +1,8 @@
 # IIIV: Multisensor Failure-Mode Detection for Gravity-Based Infusion Setups
 
-> A $20 clip-on monitor that classifies IV failure modes in real time; built in 36 hours at MedTech Hackathon 2026.
-
 **IIIV** is a low-cost, multi-sensor attachment for gravity-based IV systems that detects and classifies three failure modes: **normal flow, occlusion, and leak/disconnection**: through sensor fusion, then streams alerts to a centralized React dashboard for ward-wide monitoring. Designed for understaffed and low-resource clinical environments where existing smart-IV systems are cost-prohibitive.
 
-> Fun Fact: The 3 I's in IIIV stands for the 3 states it detects!
-
-**[Pitch Deck](iiiv_pitchdeck.pdf)** · **[Demo Video](iiiv_demo_cropped.mp4)** · **[Wiring Diagram](iiiv_wiring.png)** 
+**[Pitch Deck](iiiv_pitchdeck.pdf)** | **[Demo Video](iiiv_demo_cropped.mp4)** | **[Wiring Diagram](iiiv_wiring.png)** 
 
 ---
 
@@ -26,12 +22,12 @@
 
 ## Clinical Context
 
-The deck cites two statistics that frame the problem:
+There are two statistics that best frame the problem:
 
 - **36% of IV catheter transfusions fail before therapy completion** (Marsh et al., 2024)
 - **72–99% of clinical alarms are false alarms**, driving alarm fatigue (Sendelbach & Funk, 2013)
 
-These numbers describe the same root failure: gravity IV systems have a monitoring gap. Existing devices like Monidrop detect drop rate only, fire threshold-based alarms, and provide no failure classification or sensor redundancy. A nurse hearing an alarm doesn't know whether the bag is empty, occluded, or leaking, so alarms get ignored, and real complications get missed. IIIV closes that gap by classifying the failure mode itself, so alerts are actionable instead of ambient.
+These numbers describe the same root failure: gravity IV systems have a monitoring gap. Existing devices like Monidrop detect drop rate only, fire threshold-based alarms, and provide no failure classification or sensor redundancy. A nurse hearing an alarm doesn't know what's actually wrong with the bag at a glance, so IIIV closes that gap by classifying the failure mode itself; allowing medical personnel to act with no delays.
 
 ## Technical Approach
 
@@ -48,7 +44,7 @@ Fusing the two signals disambiguates failure modes that are indistinguishable fr
 | **Occlusion** | Stable | Inactive |
 | **Leak / External** | Decreasing | Inactive |
 
-Classified state changes stream to a React dashboard that aggregates patient telemetry across an entire ward. Alerts ping the originating room directly, so medical personnel can respond and triage without parsing which IV setup is failing.
+Classified state changes stream to a React dashboard that shows IV bag status across an entire ward. Alerts ping the originating room directly, so medical personnel can respond and triage without parsing which IV setup is failing
 
 ## Cost Breakdown
 
@@ -89,14 +85,7 @@ Classified state changes stream to a React dashboard that aggregates patient tel
 3. Select your board and port, then upload.
 4. Check out the dashboard demo: `cd dashboard && npm install && npm run dev`
 
-## Future Work
-
-- **Movement ML model**: distinguish patient-movement artifacts from true failure signals (gravity IV pumps are sensitive to motion, which is a known false-alarm driver)
-- **Predictive failure detection**: anticipate occlusion onset from upstream drip-rate trends rather than detecting after the fact
-- **Sensor improvements**: higher-quality and longer-range water-level sensor; photoresistor calibration for varied ambient lighting
-- **Enclosure design**: assembly and casing for clinical-environment durability
-
-## Team Phlegm | MedTech Hackathon 2026
+## Team Phlegm | MedTech Hackathon 2026s
 
 - William Nguyen
 - Ruy Okaji
