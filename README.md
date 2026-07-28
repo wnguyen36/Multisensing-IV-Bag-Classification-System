@@ -1,6 +1,6 @@
 # IIIV: Multisensor Failure-Mode Detection for Gravity-Based Infusion Setups
 
-**IIIV** is a low-cost, multi-sensor attachment for gravity-based IV systems that detects and classifies three failure modes: **normal flow, occlusion, and leak/disconnection**: through sensor fusion, then streams alerts to a centralized React dashboard for ward-wide monitoring. Designed for understaffed and low-resource clinical environments where existing smart-IV systems are cost-prohibitive.
+**IIIV** is a low-cost, multi-sensor attachment for gravity-based IV systems that detects and classifies three failure modes: **normal flow, occlusion, and leak/disconnection** through sensor fusion, then streams alerts to a centralized React dashboard for ward-wide monitoring. Designed for understaffed and low-resource clinical environments where existing smart-IV systems can be very costly.
 
 **[Pitch Deck](iiiv_pitchdeck.pdf)** | **[Demo Video](iiiv_demo_cropped.mp4)** | **[Wiring Diagram](iiiv_wiring.png)** 
 
@@ -11,12 +11,11 @@
 
 ---
 
-## Highlights
+## Features Overview
 
 - **$20 prototype** vs. $400–$500+ for commercial competitors (DripAssist, Monidrop) — ~95% cost reduction
 - **Three-state classification** through sensor fusion, addressing the monitoring gap that single-sensor drip monitors can't close
 - **Clip-on form factor** works with any standard gravity IV bag, no tubing modifications required
-- **Real-time ward dashboard** single nurse can monitor every IV bag on a floor from one screen
 - **Offline-capable firmware** runs directly on microcontroller, no internet dependency for the edge device
 - **End-to-end stack** Arduino/C++ firmware and React frontend, both in this repo
 
@@ -27,7 +26,7 @@ There are two statistics that best frame the problem:
 - **36% of IV catheter transfusions fail before therapy completion** (Marsh et al., 2024)
 - **72–99% of clinical alarms are false alarms**, driving alarm fatigue (Sendelbach & Funk, 2013)
 
-These numbers describe the same root failure: gravity IV systems have a monitoring gap. Existing devices like Monidrop detect drop rate only, fire threshold-based alarms, and provide no failure classification or sensor redundancy. A nurse hearing an alarm doesn't know what's actually wrong with the bag at a glance, so IIIV closes that gap by classifying the failure mode itself; allowing medical personnel to act with no delays.
+These numbers describe the same core problem: gravity IV systems have a monitoring gap. Existing devices like Monidrop detect drop rate only, fire threshold-based alarms, and provide no failure classification or sensor redundancy. A nurse hearing an alarm doesn't know what's actually wrong with the bag at a glance, so IIIV closes that gap by classifying the failure mode itself; allowing medical personnel to act with no delays.
 
 ## Technical Approach
 
@@ -36,7 +35,7 @@ Two sensors feed an Arduino-based classifier:
 - **Water-level sensor (SL067)** on the bag → tracks reservoir depletion trend
 - **Photoresistor** on the drip chamber → tracks flow activity via light interruption
 
-Fusing the two signals disambiguates failure modes that are indistinguishable from either sensor alone:
+Using both signals/sensors allows for more accurate failure more screening; compared to just one. Boolean logic was applied to classify each state directly:
 
 | Condition | Water Level Sensor | Photoresistor |
 |---|---|---|
@@ -44,7 +43,7 @@ Fusing the two signals disambiguates failure modes that are indistinguishable fr
 | **Occlusion** | Stable | Inactive |
 | **Leak / External** | Decreasing | Inactive |
 
-Classified state changes stream to a React dashboard that shows IV bag status across an entire ward. Alerts ping the originating room directly, so medical personnel can respond and triage without parsing which IV setup is failing
+A prototype React dashboard was also created, showing how this sensor could potentially link to a ward-wide monitoring system. Whenever a failure mode is detected, it will be displayed on its corresponding hospital room, allowing nurses and medical personnel to react and act quickly without wasting time figuring out what exactly is wrong with the patients' IVs. 
 
 ## Cost Breakdown
 
@@ -63,7 +62,7 @@ Classified state changes stream to a React dashboard that shows IV bag status ac
 | DripAssist (Couperus, 2019) | ~$400 |
 | Monidrop | $500+ |
 
-> *Note: prototype-vs-finished-product comparison; the main point is that the failure-mode classification capability is achievable at a fraction of incumbent BOM.*
+> *Note: prototype-vs-finished-product comparison*
 
 ## Stack
 
@@ -76,7 +75,7 @@ Classified state changes stream to a React dashboard that shows IV bag status ac
 
 **Firmware notes:**
 - `iiiv_classifier.ino` is the production-intent build: analyzes drip rate against fluid level for use with medical-grade IV bags.
-- `iiiv_classifier_demo.ino` is the hackathon prototype: reads water presence as a boolean to accommodate our team's handmade IV bag. Less accurate in a clinical context, but the right call given the sprint constraint.
+- `iiiv_classifier_demo.ino` is the hackathon prototype: reads water presence as a boolean to accommodate our team's handmade IV bag. Less accurate in a clinical context.
 
 ## Setup
 
